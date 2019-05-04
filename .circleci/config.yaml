@@ -21,14 +21,3 @@ workflows:
   build:
     jobs:
       - build
-Explanation of the build command as comments can’t be in-line in the file:
-# We will use the short git hash to tag the image
-set -x
-SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
-# Build our image
-docker build -t <dockerhub-user>/flask-docker-demo-small:$SHORT_GIT_HASH .
-# Login to dockerhub, we need to set these environment variables in 
-# the CircleCI web interface.
-docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-# Push to our dockerhub account
-docker push <dockerhub-user>/flask-docker-demo-small:$SHORT_GIT_HASH
